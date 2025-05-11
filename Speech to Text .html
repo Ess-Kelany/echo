@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="image/speech to text.jpg">
+    <title>Speech to Text Converter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #442bd3f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #442bd3f0;
+      }
+
+      .icons{
+        display: flex;
+        gap: 100px;
+        transform: translate(0px , -40px);
+      }
+    .icon1{
+        width: 150px;
+        height: 150px;
+        fill: white;
+      }
+    .icon2{
+        width: 100px;
+        height: 100px;
+        margin-top: 20px;
+        fill: white;
+      }
+
+      .container {
+        max-width: 400px;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      #transcript {
+        width: 100%;
+        min-height: 100px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 20px;
+      }
+
+      .btn-container {
+        display: flex;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+
+      select {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+      }
+
+      #btn1{
+        width: 250px;
+        height: 50px;
+        font-weight: bolder;
+        border: none;
+        color: black;
+        background-color: silver;
+        border-bottom: 10px solid white ;
+        margin-top: 30px;
+    }
+    
+    @media (max-width :767px) {
+        .icons{
+            display: flex;
+            gap: 40px;
+            transform: translate(0px , -40px);
+        }
+        .icon1{
+            width: 100px;
+            height: 110px;
+            fill: white;
+        }
+        .icon2{
+            width: 70px;
+            height: 70px;
+            margin-top: 20px;
+            fill: white;
+        }
+    }
+    </style>
+  </head>
+  <body>
+    <div class="icons">
+      <svg xmlns="http://www.w3.org/2000/svg"  class="bi bi-megaphone-fill icon1" viewBox="0 0 16 16">
+        <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0zm-1 .724c-2.067.95-4.539 1.481-7 1.656v6.237a25 25 0 0 1 1.088.085c2.053.204 4.038.668 5.912 1.56zm-8 7.841V4.934c-.68.027-1.399.043-2.008.053A2.02 2.02 0 0 0 0 7v2c0 1.106.896 1.996 1.994 2.009l.496.008a64 64 0 0 1 1.51.048m1.39 1.081q.428.032.85.078l.253 1.69a1 1 0 0 1-.983 1.187h-.548a1 1 0 0 1-.916-.599l-1.314-2.48a66 66 0 0 1 1.692.064q.491.026.966.06"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg"  class="bi bi-arrow-right icon2" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg"  class="bi bi-card-text icon1" viewBox="0 0 16 16">
+        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
+      </svg>
+  </div>
+    <div class="container">
+      <div class="title">Speech to Text Converter</div>
+      <div id="transcript"></div>
+      <div class="btn-container">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <select id="language">
+          <option value="en-US">English</option>
+          <option value="fa-IR">Persian</option>
+          <option value="tr-TR">Turkish</option>
+          <option value="hi-IN">Hindi</option>
+          <option value="ps-AF">Pashto</option>
+          <option value="ar-SA">العربية</option>
+      </select>      
+      </div>
+    </div>
+    <div class="btn1">
+      <button id="btn1" onclick="document.location='index.html'" onmousedown="cl1()" onmouseup="cl2()">Return To index</button>
+    </div>
+
+    <script>
+      if ("webkitSpeechRecognition" in window) {
+        // Create a new instance of SpeechRecognition
+        const recognition = new webkitSpeechRecognition();
+
+        // Set recognition options
+        recognition.continuous = true; // Continuous speech recognition
+        recognition.interimResults = true; // Provide interim results while speaking
+        recognition.lang = "en-US"; // Set the default language to English (United States)
+
+        // Get references to HTML elements
+        const transcriptElement = document.getElementById("transcript"); // The element to display the speech transcript
+        const startButton = document.getElementById("start"); // The button to start speech recognition
+        const stopButton = document.getElementById("stop"); // The button to stop speech recognition
+        const languageSelect = document.getElementById("language"); // The select dropdown for choosing the language
+        let transcript = ""; // Variable to store the speech transcript
+
+        // Event listener for the "Start" button click
+        startButton.addEventListener("click", () => {
+          // Set the language to the selected language from the dropdown
+          recognition.lang = languageSelect.value;
+          // Start speech recognition
+          recognition.start();
+        });
+
+        // Event listener for the "Stop" button click
+        stopButton.addEventListener("click", () => {
+          // Stop speech recognition
+          recognition.stop();
+        });
+
+        // Event listener for the "result" event when speech is recognized
+        recognition.onresult = (event) => {
+          // Process each recognized speech result
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            // Check if the current result is final (not an interim result)
+            if (event.results[i].isFinal) {
+              // Append the recognized transcript to the overall transcript variable
+              transcript += event.results[i][0].transcript + " ";
+            }
+          }
+          // Update the transcriptElement to display the current transcript
+          transcriptElement.textContent = transcript;
+        };
+      } else {
+        // Display a message in the console if Speech Recognition API is not available
+        console.log("Speech Recognition Not Available");
+      }
+      // press on button
+      function cl1(){
+        btn1 = document.getElementById('btn1');
+    
+        btn1.style.transform = 'translate(0px , 10px)';
+        btn1.style.borderBottom = '2px solid white';
+      }
+      function cl2(){
+        btn1 = document.getElementById('btn1');
+    
+        btn1.style.transform = 'translate(0px , 0px)';
+        btn1.style.borderBottom = '10px solid white';
+      }
+    </script>
+  </body>
+</html>
